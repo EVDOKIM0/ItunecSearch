@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FirstView: UIViewController {
+class AnotherViewController: UIViewController {
     
     let label = UILabel()
     var model: ItunesSearchResponseDto?
@@ -82,7 +82,7 @@ class FirstView: UIViewController {
         }
     }
 }
-extension FirstView: UITableViewDelegate, UITableViewDataSource {
+extension AnotherViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

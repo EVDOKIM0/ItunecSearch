@@ -115,36 +115,9 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: UICollectionViewDelegate {
     
-    class SecondView: UIViewController {
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .black
-           
-        }
-    }
-    class thirdView: UIViewController {
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .blue
-           
-        }
-    }
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-           case 0:
-            let FirstVC = FirstView()
-            navigationController?.pushViewController(FirstVC, animated: true)
-            case 1:
-            let SecondVC = SecondView()
-            navigationController?.pushViewController(SecondVC, animated: true)
-        case 2:
-            let thirdVC = thirdView()
-            navigationController?.pushViewController(thirdVC, animated: true)
-        default:
-            let FirstVC = FirstView()
-            navigationController?.pushViewController(FirstVC, animated: true)
-        }
+        let FirstVC = AnotherViewController()
+        navigationController?.pushViewController(FirstVC, animated: true)
     }
-
-    
 }
