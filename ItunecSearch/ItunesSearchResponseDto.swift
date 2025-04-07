@@ -9,11 +9,9 @@ import Foundation
 
 struct ItunesSearchResponseDto: Codable {
     let resultCount: Int
-    let results : [ItunesSearchResponseResultDto]
+    let results: [ItunesSearchResponseResultDto]
 }
 
 struct ItunesSearchResponseResultDto: Codable {
     let collectionName: String
-    
 }
-

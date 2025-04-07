@@ -9,12 +9,10 @@ import UIKit
 import SnapKit
 
 class AnotherViewController: UIViewController {
-    
     let label = UILabel()
     var model: ItunesSearchResponseDto?
     let imageView = UIImageView()
     var tableView = UITableView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -42,7 +40,6 @@ class AnotherViewController: UIViewController {
         }
         .resume()
     }
-   
     func setupView() {
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFit
@@ -54,7 +51,6 @@ class AnotherViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             make.width.height.equalTo(200)
-            
         }
         label.text = "TEYMOOOO!"
         label.textColor = .black
@@ -65,14 +61,12 @@ class AnotherViewController: UIViewController {
             make.top.equalTo(imageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(label.snp.top).offset(20)
-           
         }
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
-        
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -83,20 +77,14 @@ class AnotherViewController: UIViewController {
     }
 }
 extension AnotherViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return 20
 
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         let modelResult = model?.results[indexPath.row]
         cell.textLabel?.text = String(modelResult?.collectionName ?? "")
-        
         return cell
     }
-    
 }

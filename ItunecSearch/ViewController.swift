@@ -8,23 +8,20 @@
 import UIKit
 import SnapKit
 
-
 class ViewController: UIViewController {
-    
+
     var collectionView: UICollectionView!
     let Image = UIImage(named: "POPSMOKE")!
     var model: ItunesSearchResponseDto?
     var filteredData: [String] = []
     var items: Result<ItunesSearchResponseDto,Error>?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
         setupUI()
-            
     }
-    
+
     func fetchData(for searchTerm: String) {
         let replacedText = searchTerm.replacingOccurrences(of: " ", with: "+")
         guard let url = URL(string: "https://itunes.apple.com/search?term=\(replacedText)&entity=song") else { return }
@@ -61,7 +58,6 @@ class ViewController: UIViewController {
         layout.itemSize = CGSize(width: 120, height: 120)
         layout.minimumLineSpacing = 50
         layout.minimumInteritemSpacing = 10
-               
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
@@ -77,20 +73,19 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model?.results.count ?? 0
-       }
-       
-    
+        }
+
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell else {
                return UICollectionViewCell()
-           }
+        }
            let modelResult = model?.results[indexPath.row]
-           
            cell.configure(with: Image)
            cell.configureSomehow(isSomething: modelResult?.collectionName ?? "")
            return cell
        }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
            let padding: CGFloat = 10
            let collectionViewWidth = collectionView.frame.width - (padding * 3)
            let cellWidth = collectionViewWidth / 2
@@ -99,7 +94,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
 
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    }
+       }
 }
 extension ViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -112,10 +107,7 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-
 extension ViewController: UICollectionViewDelegate {
-    
-   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let FirstVC = AnotherViewController()
         navigationController?.pushViewController(FirstVC, animated: true)
