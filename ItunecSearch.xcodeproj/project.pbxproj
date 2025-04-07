@@ -8,32 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		511D362F2D6395BB00079011 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 511D362E2D6395BB00079011 /* SnapKit */; };
+		FE3DC8942DA428F1004EFD15 /* AnotherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC8872DA428F1004EFD15 /* AnotherViewController.swift */; };
+		FE3DC8952DA428F1004EFD15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC8882DA428F1004EFD15 /* AppDelegate.swift */; };
+		FE3DC8962DA428F1004EFD15 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC88A2DA428F1004EFD15 /* CustomCollectionViewCell.swift */; };
+		FE3DC8972DA428F1004EFD15 /* ItunesSearchResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC88C2DA428F1004EFD15 /* ItunesSearchResponseDto.swift */; };
+		FE3DC8982DA428F1004EFD15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC8912DA428F1004EFD15 /* SceneDelegate.swift */; };
+		FE3DC8992DA428F1004EFD15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3DC8922DA428F1004EFD15 /* ViewController.swift */; };
+		FE3DC89A2DA428F1004EFD15 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FE3DC8862DA428F1004EFD15 /* .swiftlint.yml */; };
+		FE3DC89B2DA428F1004EFD15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE3DC8892DA428F1004EFD15 /* Assets.xcassets */; };
+		FE3DC89D2DA428F1004EFD15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3DC88E2DA428F1004EFD15 /* LaunchScreen.storyboard */; };
+		FE3DC89E2DA428F1004EFD15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3DC8902DA428F1004EFD15 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		511D36152D63959100079011 /* ItunecSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunecSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE3DC8862DA428F1004EFD15 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		FE3DC8872DA428F1004EFD15 /* AnotherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherViewController.swift; sourceTree = "<group>"; };
+		FE3DC8882DA428F1004EFD15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE3DC8892DA428F1004EFD15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE3DC88A2DA428F1004EFD15 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE3DC88B2DA428F1004EFD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE3DC88C2DA428F1004EFD15 /* ItunesSearchResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesSearchResponseDto.swift; sourceTree = "<group>"; };
+		FE3DC88D2DA428F1004EFD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FE3DC88F2DA428F1004EFD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FE3DC8912DA428F1004EFD15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FE3DC8922DA428F1004EFD15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		511D36272D63959200079011 /* Exceptions for "ItunecSearch" folder in "ItunecSearch" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 511D36142D63959100079011 /* ItunecSearch */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		511D36172D63959100079011 /* ItunecSearch */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				511D36272D63959200079011 /* Exceptions for "ItunecSearch" folder in "ItunecSearch" target */,
-			);
-			path = ItunecSearch;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		511D36122D63959100079011 /* Frameworks */ = {
@@ -50,7 +50,7 @@
 		511D360C2D63959100079011 = {
 			isa = PBXGroup;
 			children = (
-				511D36172D63959100079011 /* ItunecSearch */,
+				FE3DC8932DA428F1004EFD15 /* ItunecSearch */,
 				511D36162D63959100079011 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +63,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FE3DC8932DA428F1004EFD15 /* ItunecSearch */ = {
+			isa = PBXGroup;
+			children = (
+				FE3DC8862DA428F1004EFD15 /* .swiftlint.yml */,
+				FE3DC8872DA428F1004EFD15 /* AnotherViewController.swift */,
+				FE3DC8882DA428F1004EFD15 /* AppDelegate.swift */,
+				FE3DC8892DA428F1004EFD15 /* Assets.xcassets */,
+				FE3DC88A2DA428F1004EFD15 /* CustomCollectionViewCell.swift */,
+				FE3DC88B2DA428F1004EFD15 /* Info.plist */,
+				FE3DC88C2DA428F1004EFD15 /* ItunesSearchResponseDto.swift */,
+				FE3DC88E2DA428F1004EFD15 /* LaunchScreen.storyboard */,
+				FE3DC8902DA428F1004EFD15 /* Main.storyboard */,
+				FE3DC8912DA428F1004EFD15 /* SceneDelegate.swift */,
+				FE3DC8922DA428F1004EFD15 /* ViewController.swift */,
+			);
+			path = ItunecSearch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -70,6 +88,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 511D36282D63959200079011 /* Build configuration list for PBXNativeTarget "ItunecSearch" */;
 			buildPhases = (
+				FE0AFE022DA1DE1700A02158 /* Swiftlint */,
 				511D36112D63959100079011 /* Sources */,
 				511D36122D63959100079011 /* Frameworks */,
 				511D36132D63959100079011 /* Resources */,
@@ -77,9 +96,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				511D36172D63959100079011 /* ItunecSearch */,
 			);
 			name = ItunecSearch;
 			packageProductDependencies = (
@@ -115,6 +131,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				511D362D2D6395BB00079011 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FE0AFDFF2DA1DDE200A02158 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 511D36162D63959100079011 /* Products */;
@@ -131,20 +148,71 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE3DC89A2DA428F1004EFD15 /* .swiftlint.yml in Resources */,
+				FE3DC89B2DA428F1004EFD15 /* Assets.xcassets in Resources */,
+				FE3DC89D2DA428F1004EFD15 /* LaunchScreen.storyboard in Resources */,
+				FE3DC89E2DA428F1004EFD15 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FE0AFE022DA1DE1700A02158 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		511D36112D63959100079011 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE3DC8942DA428F1004EFD15 /* AnotherViewController.swift in Sources */,
+				FE3DC8952DA428F1004EFD15 /* AppDelegate.swift in Sources */,
+				FE3DC8962DA428F1004EFD15 /* CustomCollectionViewCell.swift in Sources */,
+				FE3DC8972DA428F1004EFD15 /* ItunesSearchResponseDto.swift in Sources */,
+				FE3DC8982DA428F1004EFD15 /* SceneDelegate.swift in Sources */,
+				FE3DC8992DA428F1004EFD15 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FE3DC88E2DA428F1004EFD15 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE3DC88D2DA428F1004EFD15 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FE3DC8902DA428F1004EFD15 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE3DC88F2DA428F1004EFD15 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		511D36292D63959200079011 /* Debug */ = {
@@ -155,6 +223,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S3DK5MZLSN;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ItunecSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -183,6 +252,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S3DK5MZLSN;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ItunecSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,6 +422,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.7.1;
+			};
+		};
+		FE0AFDFF2DA1DDE200A02158 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.59.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
