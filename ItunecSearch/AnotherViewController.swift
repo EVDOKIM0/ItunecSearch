@@ -9,16 +9,30 @@ import UIKit
 import SnapKit
 
 class AnotherViewController: UIViewController {
+
     let label = UILabel()
     var model: ItunesSearchResponseDto?
     let imageView = UIImageView()
     var tableView = UITableView()
+    let searchTerm: String
+
+    init(searchTerm: String) {
+        self.searchTerm = searchTerm
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupView()
+        fetchData()
     }
-    func fetchData(for searchTerm: String) {
+
+    func fetchData() {
         let replacedText = searchTerm.replacingOccurrences(of: " ", with: "+")
         guard let url = URL(string: "https://itunes.apple.com/search?term=\(replacedText)&entity=song") else { return }
         let urlRequest = URLRequest(url: url)
@@ -40,6 +54,7 @@ class AnotherViewController: UIViewController {
         }
         .resume()
     }
+
     func setupView() {
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFit
@@ -76,15 +91,17 @@ class AnotherViewController: UIViewController {
         }
     }
 }
+
 extension AnotherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-
+        return model?.results.count ?? .zero
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let modelResult = model?.results[indexPath.row]
         cell.textLabel?.text = String(modelResult?.collectionName ?? "")
+
         return cell
     }
 }

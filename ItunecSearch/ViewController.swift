@@ -70,6 +70,7 @@ class ViewController: UIViewController {
         }
     }
 }
+
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model?.results.count ?? 0
@@ -96,6 +97,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
        }
 }
+
 extension ViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else {
@@ -109,7 +111,8 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let FirstVC = AnotherViewController()
+        guard let albumName = model?.results[indexPath.item].collectionName else { return }
+        let FirstVC = AnotherViewController(searchTerm: albumName)
         navigationController?.pushViewController(FirstVC, animated: true)
     }
 }
