@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var model: ItunesSearchResponseDto?
     var filteredData: [String] = []
     var items: Result<ItunesSearchResponseDto,Error>?
+    private let padding: CGFloat = 16
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,6 @@ class ViewController: UIViewController {
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 120, height: 140)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
@@ -72,28 +72,35 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model?.results.count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
         }
+        let modelResult = model?.results[indexPath.row]
+        cell.configure(with: Image)
+        cell.configureSomehow(isSomething: modelResult?.collectionName ?? "")
+        return cell
+    }
 
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell else {
-               return UICollectionViewCell()
-        }
-           let modelResult = model?.results[indexPath.row]
-           cell.configure(with: Image)
-           cell.configureSomehow(isSomething: modelResult?.collectionName ?? "")
-           return cell
-       }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width - (padding * 3)
+        let cellWidth = collectionViewWidth / 2
+        return CGSize(width: cellWidth, height: cellWidth + 64.0)
+    }
 
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 10
-           let collectionViewWidth = collectionView.frame.width - (padding * 3)
-           let cellWidth = collectionViewWidth / 2
-           return CGSize(width: cellWidth, height: cellWidth)
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-       }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        return UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
