@@ -4,9 +4,10 @@ import SnapKit
 class CustomCollectionViewCell: UICollectionViewCell {
     let label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 30, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .white
         label.textAlignment = .center
+        label.numberOfLines = 1
         return label
     }()
     let imageView: UIImageView = {
@@ -27,20 +28,22 @@ class CustomCollectionViewCell: UICollectionViewCell {
         label.text = isSomething
     }
     private func setupUI() {
-        addSubview(imageView)
-        addSubview(label)
-        imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.bottom.equalToSuperview()
+            contentView.addSubview(imageView)
+            contentView.addSubview(label)
+
+            imageView.snp.makeConstraints {
+                $0.height.equalTo(120.0)
+                $0.top.horizontalEdges.equalToSuperview()
+            }
+
+            label.snp.makeConstraints { make in
+                make.top.equalTo(imageView.snp.bottom).offset(8.0)
+                make.horizontalEdges.bottom.equalToSuperview()
+            }
         }
-        label.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom)
-        }
-    }
     func configure(with image: UIImage) {
         imageView.image = image
-        label.textColor = .red
+        label.textColor = .white
         label.sizeToFit()
     }
 }

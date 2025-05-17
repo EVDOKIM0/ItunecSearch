@@ -55,9 +55,7 @@ class ViewController: UIViewController {
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.minimumLineSpacing = 50
-        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 120, height: 140)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")

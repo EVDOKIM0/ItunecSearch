@@ -27,7 +27,7 @@ class AnotherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         setupView()
         fetchData()
     }
@@ -68,7 +68,7 @@ class AnotherViewController: UIViewController {
             make.width.height.equalTo(200)
         }
         label.text = "TEYMOOOO!"
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         view.addSubview(label)
         label.snp.makeConstraints { (make) in
@@ -81,7 +81,8 @@ class AnotherViewController: UIViewController {
         tableView.dataSource = self
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
-
+       
+        tableView.backgroundColor = .black
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -100,7 +101,10 @@ extension AnotherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let modelResult = model?.results[indexPath.row]
-        cell.textLabel?.text = String(modelResult?.collectionName ?? "")
+        let trackNumber = indexPath.row + 1
+        cell.textLabel?.text = "\(trackNumber). \(modelResult?.collectionName ?? "")"
+        cell.backgroundColor = .black
+        cell.textLabel?.textColor = .white
 
         return cell
     }
