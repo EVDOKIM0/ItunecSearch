@@ -8,23 +8,21 @@
 import UIKit
 import SnapKit
 
-
 class ViewController: UIViewController {
-    
+
     var collectionView: UICollectionView!
     let Image = UIImage(named: "POPSMOKE")!
     var model: ItunesSearchResponseDto?
     var filteredData: [String] = []
     var items: Result<ItunesSearchResponseDto,Error>?
-    
+    private let padding: CGFloat = 16
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
         setupUI()
-            
     }
-    
+
     func fetchData(for searchTerm: String) {
         let replacedText = searchTerm.replacingOccurrences(of: " ", with: "+")
         guard let url = URL(string: "https://itunes.apple.com/search?term=\(replacedText)&entity=song") else { return }
@@ -49,19 +47,32 @@ class ViewController: UIViewController {
     }
 
     func setupUI() {
+        
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "Search for artists, songs, albums..."
         searchController.searchBar.delegate = self
         searchController.searchBar.barTintColor = .white
-
         navigationItem.searchController = searchController
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = .darkGray
+            textField.textColor = .white
+            textField.attributedPlaceholder = NSAttributedString(
+            string: "Search for artists, songs, albums...",
+            attributes: [.foregroundColor: UIColor.lightGray]
+            )
+        if let iconView = textField.leftView as? UIImageView {
+            iconView.tintColor = .white
+
+            }
+
+            textField.tintColor = .white
+
+            }
+
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.minimumLineSpacing = 50
-        layout.minimumInteritemSpacing = 10
-               
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
@@ -74,33 +85,41 @@ class ViewController: UIViewController {
         }
     }
 }
+
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model?.results.count ?? 0
-       }
-       
-    
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell else {
-               return UICollectionViewCell()
-           }
-           let modelResult = model?.results[indexPath.row]
-           
-           cell.configure(with: Image)
-           cell.configureSomehow(isSomething: modelResult?.collectionName ?? "")
-           return cell
-       }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 10
-           let collectionViewWidth = collectionView.frame.width - (padding * 3)
-           let cellWidth = collectionViewWidth / 2
-           return CGSize(width: cellWidth, height: cellWidth)
-       }
+    }
 
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let modelResult = model?.results[indexPath.row]
+        cell.configure(with: Image)
+        cell.configureSomehow(isSomething: modelResult?.collectionName ?? "")
+        return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width - (padding * 3)
+        let cellWidth = collectionViewWidth / 2
+        return CGSize(width: cellWidth, height: cellWidth + 64.0)
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        return UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
     }
 }
+
 extension ViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else {
@@ -112,39 +131,10 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-
 extension ViewController: UICollectionViewDelegate {
-    
-    class SecondView: UIViewController {
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .green
-           
-        }
-    }
-    class thirdView: UIViewController {
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .blue
-           
-        }
-    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-           case 0:
-            let FirstVC = FirstView()
-            navigationController?.pushViewController(FirstVC, animated: true)
-            case 1:
-            let SecondVC = SecondView()
-            navigationController?.pushViewController(SecondVC, animated: true)
-        case 2:
-            let thirdVC = thirdView()
-            navigationController?.pushViewController(thirdVC, animated: true)
-        default:
-            let FirstVC = FirstView()
-            navigationController?.pushViewController(FirstVC, animated: true)
-        }
+        guard let albumName = model?.results[indexPath.item].collectionName else { return }
+        let FirstVC = AnotherViewController(searchTerm: albumName)
+        navigationController?.pushViewController(FirstVC, animated: true)
     }
-
-    
 }
