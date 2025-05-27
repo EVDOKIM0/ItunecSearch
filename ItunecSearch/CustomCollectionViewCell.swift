@@ -4,10 +4,10 @@ import SnapKit
 class CustomCollectionViewCell: UICollectionViewCell {
     let label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .white
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.contentMode = .top
         return label
     }()
@@ -38,7 +38,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         }
 
         label.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(8.0)
+            make.top.equalTo(imageView.snp.bottom).offset(-8.0)
             make.horizontalEdges.bottom.equalToSuperview()
         }
     }

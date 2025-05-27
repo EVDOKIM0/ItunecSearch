@@ -47,12 +47,29 @@ class ViewController: UIViewController {
     }
 
     func setupUI() {
+        
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "Search for artists, songs, albums..."
         searchController.searchBar.delegate = self
         searchController.searchBar.barTintColor = .white
-
         navigationItem.searchController = searchController
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = .darkGray
+            textField.textColor = .white
+            textField.attributedPlaceholder = NSAttributedString(
+            string: "Search for artists, songs, albums...",
+            attributes: [.foregroundColor: UIColor.lightGray]
+            )
+        if let iconView = textField.leftView as? UIImageView {
+            iconView.tintColor = .white
+
+            }
+
+            textField.tintColor = .white
+
+            }
+
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
