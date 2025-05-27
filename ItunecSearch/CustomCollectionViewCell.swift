@@ -1,8 +1,10 @@
 import UIKit
 import SnapKit
 
-class CustomCollectionViewCell: UICollectionViewCell {
-    let label: UILabel = {
+final class CustomCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - UI
+    private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .white
@@ -11,13 +13,16 @@ class CustomCollectionViewCell: UICollectionViewCell {
         label.contentMode = .top
         return label
     }()
-    let imageView: UIImageView = {
+
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
         return imageView
     }()
+
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -25,10 +30,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     func configureSomehow(isSomething: String) {
         label.text = isSomething
     }
-    private func setupUI() {
+
+    func configure(with image: UIImage) {
+        imageView.image = image
+        label.textColor = .white
+    }
+}
+
+// MARK: - Private Methods
+private extension CustomCollectionViewCell {
+    func setupUI() {
         contentView.addSubview(imageView)
         contentView.addSubview(label)
 
@@ -41,10 +56,5 @@ class CustomCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(imageView.snp.bottom).offset(-8.0)
             make.horizontalEdges.bottom.equalToSuperview()
         }
-    }
-
-    func configure(with image: UIImage) {
-        imageView.image = image
-        label.textColor = .white
     }
 }

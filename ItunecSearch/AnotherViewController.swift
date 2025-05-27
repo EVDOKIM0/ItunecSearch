@@ -8,12 +8,15 @@
 import UIKit
 import SnapKit
 
-class AnotherViewController: UIViewController {
+final class AnotherViewController: UIViewController {
 
-    let label = UILabel()
+    // MARK: - UI
+    private let label = UILabel()
+    private let imageView = UIImageView()
+    private let tableView = UITableView()
+
+    // MARK: - Public Properties
     var model: ItunesSearchResponseDto?
-    let imageView = UIImageView()
-    var tableView = UITableView()
     let searchTerm: String
 
     init(searchTerm: String) {
@@ -28,7 +31,7 @@ class AnotherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setupView()
+        setupUI()
         fetchData()
     }
 
@@ -54,29 +57,26 @@ class AnotherViewController: UIViewController {
         }
         .resume()
     }
+}
 
-    func setupView() {
+// MARK: - Private Methods
+private extension AnotherViewController {
+    func setupUI() {
+        setupViews()
+        setupConstraints()
+    }
+
+    func setupViews() {
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 16
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "BLUE")
-        view.addSubview(imageView)
-        imageView.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.width.height.equalTo(200)
-        }
+
         label.text = "TEYMOOOO!"
         label.textColor = .white
         label.textAlignment = .center
-        view.addSubview(label)
-        label.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(label.snp.top).offset(20)
-        }
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 16
@@ -84,7 +84,25 @@ class AnotherViewController: UIViewController {
        
         tableView.backgroundColor = .black
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(imageView)
+        view.addSubview(label)
         view.addSubview(tableView)
+    }
+
+    func setupConstraints() {
+        imageView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.width.height.equalTo(200)
+        }
+
+        label.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(imageView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(label.snp.top).offset(20)
+        }
+
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(label.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
